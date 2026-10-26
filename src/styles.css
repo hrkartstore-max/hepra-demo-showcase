@@ -48,3 +48,13 @@ body{font-size:15px;line-height:1.55;letter-spacing:-.008em}
 @media(max-width:780px){.trust-strip{gap:12px}.trust-strip>div{grid-template-columns:24px 1fr;gap:3px 8px}.trust-strip strong{font-size:15px}.trust-strip span{font-size:9px}.preview-modal{grid-template-columns:1fr;max-height:90vh}.preview-image{min-height:240px;height:32vh}.preview-copy{padding:26px}.preview-copy h2{font-size:40px}.mobile-enquiry{position:fixed;left:14px;right:70px;bottom:14px;z-index:19;display:flex;justify-content:center;align-items:center;gap:10px;min-height:46px;padding:0 16px;background:var(--clay);color:#fffaf1;font-size:12px;font-weight:700;box-shadow:0 8px 22px #20241f24}.float-wa{bottom:14px;right:14px}}
 @media(max-width:560px){.trust-strip{grid-template-columns:1fr;gap:15px;padding-top:20px;padding-bottom:20px}.trust-strip>div{grid-template-columns:28px 1fr}.trust-strip strong{font-size:16px}.trust-strip span{font-size:10px}.preview-backdrop{padding:10px}.preview-modal{max-height:94vh}.preview-image{min-height:200px;height:27vh}.preview-copy{padding:22px 18px}.preview-copy h2{font-size:34px}.preview-close{top:9px;right:9px;width:38px;height:38px}.mobile-enquiry{left:12px;right:66px;bottom:12px;min-height:44px}.float-wa{right:12px;bottom:12px}}
 @media(prefers-reduced-motion:reduce){.reveal-section,.preview-backdrop,.preview-modal{animation:none!important;transition:none!important;opacity:1;transform:none}html{scroll-behavior:auto}}
+
+
+/* Isolated experiment: lightweight CSS-only hero motion (no WebGL or new dependencies) */
+@keyframes hepra-float-soft{0%,100%{transform:translate3d(0,0,0) rotate(0deg)}50%{transform:translate3d(0,-7px,0) rotate(-1deg)}}
+@keyframes hepra-image-drift{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-4px,0)}}
+.hero .stamp{animation:hepra-float-soft 7s ease-in-out infinite;transform-origin:center}
+.hero .hero-inset{animation:hepra-image-drift 8s ease-in-out infinite;will-change:transform}
+.hero .photo-tag{animation:hepra-image-drift 8s ease-in-out infinite;animation-delay:-3s}
+@media(max-width:780px){.hero .stamp,.hero .hero-inset,.hero .photo-tag{animation:none;will-change:auto}}
+@media(prefers-reduced-motion:reduce){.hero .stamp,.hero .hero-inset,.hero .photo-tag{animation:none!important;transform:none!important;will-change:auto}}
