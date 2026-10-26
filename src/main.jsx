@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { ArrowRight, ArrowUpRight, Check, Menu, X, Search, Utensils, Glasses, Shirt, Scissors, House, Bus, Gem, BriefcaseBusiness, ShoppingBag, Globe2, Smartphone, ShieldCheck, MessageCircle, ChevronDown } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, ArrowLeft, Check, Menu, X, Search, Utensils, Glasses, Shirt, Scissors, House, Bus, Gem, BriefcaseBusiness, ShoppingBag, Globe2, Smartphone, ShieldCheck, MessageCircle, ChevronDown } from 'lucide-react';
 import './styles.css';
 
 const WA_NUMBER = '919876543210'; // Replace with your WhatsApp number: country code + number, no + or spaces.
@@ -36,6 +36,31 @@ const faqs = [
   ['How does the 50% advance work?','A 50% advance confirms your booking. The remaining balance is due after completion and your approval, before handover.'],
   ['Are there any extra costs?','Shopify subscription fees, paid apps, hosting renewals and third-party charges may be separate. We confirm these before you commit.']
 ];
+
+
+const industryCopy = {
+ restaurant:['A PLACE FOR GOOD FOOD','Good food deserves a great first impression.','A warm, inviting website concept for cafés and restaurants.',['A menu made to browse','Bring people to your table','Made for hungry customers']],
+ fashion:['YOUR NEXT COLLECTION','Style that speaks before the first click.','An editorial storefront concept for independent fashion labels.',['Let the collection lead','Details that build confidence','A smoother shopping journey']],
+ optical:['SEE YOUR STYLE CLEARLY','A sharper online experience for eyewear.','A modern optical store concept for frames, lenses and eye-care services.',['Frames made easy to find','Explain lens options simply','Turn interest into appointments']],
+ 'real-estate':['FIND YOUR NEXT PLACE','Property stories worth looking closer at.','A clean property concept for agents and real-estate teams.',['Listings with clarity','Help buyers compare','Make the next step simple']],
+ salon:['YOUR MOMENT, YOUR STYLE','A calmer way to discover beauty services.','A polished digital home for salons and beauty professionals.',['Services at a glance','Show your signature work','Make enquiries effortless']],
+ 'bus-travel':['THE JOURNEY STARTS HERE','Make every trip easier to plan.','A travel website concept for route discovery and booking journeys.',['Routes at a glance','A more confident booking journey','Designed for the phone']],
+ jewellery:['CRAFTED TO BE KEPT','Let every detail have its moment.','A refined showcase for jewellery makers and independent brands.',['Lead with the details','Collections with a point of view','Confidence from first look']],
+ 'business-services':['GOOD WORK, CLEARLY PRESENTED','Make your expertise easier to choose.','A professional website concept for consultants and service-led businesses.',['Explain what you do','Show proof of your approach','Convert visits into conversations']]
+};
+const demoSlug = d => ({'Restaurant & café':'restaurant','Fashion & clothing':'fashion','Optical store':'optical','Real estate':'real-estate','Salon & beauty':'salon','Bus & travel':'bus-travel','Jewellery':'jewellery','Business & services':'business-services'}[d.title] || 'restaurant');
+function IndustryDemo({demo}) {
+ const copy=industryCopy[demoSlug(demo)] || industryCopy.restaurant;
+ return <div className="industry-page">
+  <header className="industry-nav wrap"><a className="logo" href="/#home">HEPRA<span>.</span><small>WEB DESIGN FOR REAL BUSINESS</small></a><a className="industry-back" href="/#demos"><ArrowLeft size={15}/> All concepts</a><a className="btn header-btn" href="/#contact">Start a project <ArrowUpRight size={16}/></a></header>
+  <main>
+   <section className="industry-hero wrap"><div className="industry-copy"><p className="eyebrow">{copy[0]}</p><p className="industry-kicker">HEPRA INDUSTRY CONCEPT / {demo.type.toUpperCase()}</p><h1>{copy[1]}</h1><p className="lede">{copy[2]}</p><div className="actions"><a className="btn" href="#industry-features">Explore the concept <ArrowRight size={16}/></a><a className="textlink" href="/#contact">Discuss your website ↗</a></div><p className="hero-note">Concept direction · Responsive-first · Tailored to your brand</p></div><div className="industry-visual"><img src={demo.image} alt={demo.title+' illustrative concept'}/><span className="industry-image-note">{demo.title.toUpperCase()} / DESIGN DIRECTION</span></div></section>
+   <section className="industry-intro"><div className="wrap"><p className="eyebrow">A BETTER DIGITAL FIRST IMPRESSION</p><h2>Designed around what your customers <em>need to do next.</em></h2><p>This concept shows a possible direction for your business. Final design, content and functionality are planned with you before the build begins.</p></div></section>
+   <section className="section wrap industry-features" id="industry-features"><div className="section-head"><div><p className="eyebrow">THE EXPERIENCE</p><h2>Clear by design.<br/><em>Useful every day.</em></h2></div><p className="muted">A starting point for a focused, easy-to-use website — not a one-size-fits-all template.</p></div><div className="industry-feature-grid">{copy[3].map((title,i)=><article key={title}><span>0{i+1}</span><h3>{title}</h3><p>{demo.desc} The final content and features can be tailored to your business, audience and goals.</p></article>)}</div><div className="industry-cards">{[demo.title+' essentials','Featured collection','Helpful information'].map((title,i)=><article key={title}><img src={i===0?demo.image:i===1?pics.corporate:pics.restaurant} alt="" loading="lazy"/><div><span>0{i+1} / CONCEPT SECTION</span><h3>{title}</h3><p>Present the details your customers need in a clear, considered layout.</p></div></article>)}</div></section>
+   <section className="industry-cta"><div className="wrap"><p className="eyebrow">YOUR BUSINESS, YOUR VERSION</p><h2>Like this direction?<br/><em>Let’s make it yours.</em></h2><p>We’ll confirm the page list, features, content and package before work begins.</p><div className="actions"><a className="btn" href="/#contact">Plan my website <ArrowRight size={16}/></a><a className="industry-whatsapp" href={'https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent('Hi HEPRA, I would like to discuss a '+demo.title+' website concept.')} target="_blank" rel="noreferrer">Ask on WhatsApp <ArrowUpRight size={15}/></a></div></div></section>
+  </main><footer className="footer wrap"><a className="logo" href="/#home">HEPRA<span>.</span><small>WEB DESIGN FOR REAL BUSINESS</small></a><p>Thoughtful websites for businesses with somewhere to go.</p><div><a href="/#demos">All concepts</a><a href="/#pricing">Packages</a><a href="/#contact">Contact</a></div><small>© {new Date().getFullYear()} HEPRA. Concept preview — not a live client website.</small></footer>
+ </div>;
+}
 
 function App(){
   const [category,setCategory]=useState('All');
@@ -93,4 +118,8 @@ function App(){
   {activeDemo&&<div className="preview-backdrop" role="presentation" onMouseDown={e=>{if(e.target===e.currentTarget)closePreview()}}><section ref={modalRef} className="preview-modal" role="dialog" aria-modal="true" aria-labelledby="preview-title" tabIndex={-1}><button type="button" className="preview-close" onClick={closePreview} aria-label="Close preview"><X/></button><div className="preview-image"><img src={activeDemo.image} alt={activeDemo.title+" concept preview"}/><span className="image-label">{activeDemo.type.toUpperCase()} / CONCEPT</span></div><div className="preview-copy"><p className="eyebrow">HEPRA WEBSITE CONCEPT</p><h2 id="preview-title">{activeDemo.title}</h2><p>{activeDemo.desc}</p><div className="preview-tags"><span>{activeDemo.meta.split(' · ')[0]}</span><span>Responsive layout</span><span>Custom brand styling</span></div><p className="preview-disclaimer">This is a concept preview, not a separate live client website. Final pages and features are agreed before work begins.</p><button className="btn plan-btn" onClick={()=>{setPlan('Need advice');setDetails("I'd like to discuss a "+activeDemo.title+" website concept.");closePreview();document.querySelector('#contact')?.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}}>Discuss this website <ArrowRight size={16}/></button></div></section></div>}
   </main><footer className="footer wrap"><a className="logo" href="#home">HEPRA<span>.</span><small>WEB DESIGN FOR REAL BUSINESS</small></a><p>Thoughtful websites for businesses with somewhere to go.</p><div><a href="#demos">Demos</a><a href="#pricing">Packages</a><a href="#contact">Contact</a></div><small>© {new Date().getFullYear()} HEPRA. All rights reserved.</small></footer><a className="mobile-enquiry" href="#contact">Start your website <ArrowUpRight size={16}/></a><a className="float-wa" href={wa('Hi HEPRA, I would like to discuss a website project.')} target="_blank" rel="noreferrer" aria-label="Contact HEPRA on WhatsApp"><MessageCircle/></a></>;
 }
-createRoot(document.getElementById('root')).render(<App/>);
+const routePath=window.location.pathname.replace(/\/+$/,'');
+const routeSlug=routePath.startsWith('/demo/')?routePath.slice(6):'';
+const routeTitles={'restaurant':'Restaurant & café','fashion':'Fashion & clothing','optical':'Optical store','real-estate':'Real estate','salon':'Salon & beauty','bus-travel':'Bus & travel','jewellery':'Jewellery','business-services':'Business & services'};
+const routeDemo=demos.find(d=>d.title===routeTitles[routeSlug]);
+createRoot(document.getElementById('root')).render(routeDemo?<IndustryDemo demo={routeDemo}/>:<App/>);
