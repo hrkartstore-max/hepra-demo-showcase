@@ -28,3 +28,23 @@ body{font-size:15px;line-height:1.55;letter-spacing:-.008em}
 @media(max-width:780px){.header{position:sticky;top:0}.hero{padding-top:50px}.demo-feature .demo-img{height:390px}.gallery{gap:34px 20px}.plan-card:hover{transform:none}}
 @media(max-width:560px){.hero{padding-top:38px}.hero-art{margin-top:30px}.demo-feature .demo-img{height:clamp(230px,65vw,340px)}.chip{padding:9px 13px}.section-head{margin-bottom:30px}.float-wa{bottom:18px}}
 @media(hover:none){.demo-img:hover img,.about-photo:hover img{transform:none}}
+
+/* All-in-one HEPRA upgrade: preview modal, conversion cues, scroll motion, mobile CTA */
+.reveal-section{opacity:0;transform:translateY(18px);transition:opacity 650ms ease,transform 650ms cubic-bezier(.2,.7,.25,1)}
+.reveal-section.is-visible{opacity:1;transform:translateY(0)}
+.trust-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding-top:22px;padding-bottom:22px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.trust-strip>div{display:grid;grid-template-columns:30px 1fr;gap:3px 12px;align-items:center}.trust-strip svg{grid-row:span 2;color:var(--clay);width:21px;height:21px}
+.trust-strip strong{font:500 18px var(--serif)}.trust-strip span{font-size:10px;color:var(--muted)}
+.demo-preview-trigger{width:100%;padding:0;border:0;text-align:left;color:inherit;cursor:pointer;font:inherit}
+.textlink-button{background:none;border:0;border-bottom:1px solid #9DA79A;padding:0 0 5px;color:inherit;cursor:pointer}
+.preview-backdrop{position:fixed;inset:0;z-index:100;background:#171B18B8;display:grid;place-items:center;padding:24px;overflow:auto;backdrop-filter:blur(5px);animation:fade-in 180ms ease-out}
+.preview-modal{position:relative;display:grid;grid-template-columns:1.05fr .95fr;width:min(960px,100%);max-height:min(760px,92vh);overflow:auto;background:var(--base);box-shadow:0 28px 100px #0003;animation:modal-in 240ms ease-out}
+.preview-close{position:absolute;top:14px;right:14px;z-index:2;width:42px;height:42px;display:grid;place-items:center;border:1px solid #FFFFFF8A;background:#F7F4EC;color:var(--neutral)}
+.preview-image{position:relative;min-height:430px;background:#E6E1D5}.preview-image img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover}.preview-image:after{content:"";position:absolute;inset:55% 0 0;background:linear-gradient(transparent,#20241f70)}.preview-image .image-label{z-index:1}
+.preview-copy{padding:clamp(28px,5vw,58px);align-self:center}.preview-copy h2{font:500 clamp(36px,4.5vw,58px)/1 var(--serif);letter-spacing:-.045em;margin:0 0 18px}.preview-copy>p:not(.eyebrow){font-size:13px;line-height:1.8;color:var(--muted)}
+.preview-tags{display:flex;gap:7px;flex-wrap:wrap;margin:23px 0}.preview-tags span{border:1px solid var(--line);border-radius:99px;padding:8px 10px;font-size:9px;color:var(--accent)}
+.preview-copy .preview-disclaimer{padding-top:15px;border-top:1px solid var(--line);font-size:10px}.mobile-enquiry{display:none}
+@keyframes fade-in{from{opacity:0}to{opacity:1}}@keyframes modal-in{from{opacity:0;transform:translateY(12px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:780px){.trust-strip{gap:12px}.trust-strip>div{grid-template-columns:24px 1fr;gap:3px 8px}.trust-strip strong{font-size:15px}.trust-strip span{font-size:9px}.preview-modal{grid-template-columns:1fr;max-height:90vh}.preview-image{min-height:240px;height:32vh}.preview-copy{padding:26px}.preview-copy h2{font-size:40px}.mobile-enquiry{position:fixed;left:14px;right:70px;bottom:14px;z-index:19;display:flex;justify-content:center;align-items:center;gap:10px;min-height:46px;padding:0 16px;background:var(--clay);color:#fffaf1;font-size:12px;font-weight:700;box-shadow:0 8px 22px #20241f24}.float-wa{bottom:14px;right:14px}}
+@media(max-width:560px){.trust-strip{grid-template-columns:1fr;gap:15px;padding-top:20px;padding-bottom:20px}.trust-strip>div{grid-template-columns:28px 1fr}.trust-strip strong{font-size:16px}.trust-strip span{font-size:10px}.preview-backdrop{padding:10px}.preview-modal{max-height:94vh}.preview-image{min-height:200px;height:27vh}.preview-copy{padding:22px 18px}.preview-copy h2{font-size:34px}.preview-close{top:9px;right:9px;width:38px;height:38px}.mobile-enquiry{left:12px;right:66px;bottom:12px;min-height:44px}.float-wa{right:12px;bottom:12px}}
+@media(prefers-reduced-motion:reduce){.reveal-section,.preview-backdrop,.preview-modal{animation:none!important;transition:none!important;opacity:1;transform:none}html{scroll-behavior:auto}}
